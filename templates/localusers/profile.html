@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}profile {{user}}{% endblock %}
+
+{% block content %}
+<h3>{{user.get_full_name}}'s profile</h3>
+<div class="row">
+    <div class="col col-md-6">
+        <div class="">
+            <p>First Name: {{user.first_name}}</p>
+            <p>Last Name: {{user.last_name}}</p>
+            <p>Bio: {{user.bio}}</p>
+        </div>
+    </div>
+    <div class="col col-md-6">
+        <!-- <img src="/media/favicon.jpg" alt="avatar"> -->
+        <img src="{{user.get_avatar_url}}" alt="avatar">
+    </div>
+</div>
+<div class="row">
+    <div class="col col-md-4">
+        <a href="{% url 'localusers:edit-profile' user.id %}" class="card-link btn btn-success">
+            Edit Profile
+        </a>
+        <a href="{% url 'localusers:delete-profile' user.id %}" class="card-link btn btn-danger float-right">
+            Delete Profle
+        </a>
+    </div>
+</div>
+<!-- <li class="nav-item">
+  <a class="nav-link" href="{% url 'account_email' %}">Change E-mail</a>
+</li> -->
+{% endblock %}

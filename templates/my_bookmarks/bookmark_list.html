@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}{{user.username}}'s bookmarks | {{block.super}}{% endblock %}
+
+{% block content %}
+<h1>My bookmarks</h1>
+<img class="rounded-circle" src="{{user.get_avatar_url}}" alt="avatar">
+<hr>
+<div class="row">
+    {% if object_list %}
+        {% for bookmark in object_list %}
+            <div class="col col-md-6">
+            {{forloop.counter}}
+                {%  include '_partials/_card.html' %}
+                <hr>
+
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+{% endblock %}

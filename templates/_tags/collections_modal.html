@@ -1,0 +1,27 @@
+<div class="modal fade collection-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Choose Collection</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form class="form-control" action="{% url 'my_bookmarks:add-to-collect' %}" >
+                <select name="collection">
+                    <option value="">--pick a collection--</option>
+                    {% for col in collections %}
+                        <option value="{{col.slug}}">{{col.name}}</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="bookmark" value="">
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add to collection</button>
+      </div>
+    </div>
+  </div>
+</div>

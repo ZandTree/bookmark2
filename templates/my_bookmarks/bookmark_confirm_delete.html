@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}delete? | {{block.super}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="{% url 'my_bookmarks:boo:soft-delete' pk=bookmark.pk %}" method="post">
+        {% csrf_token %}
+        <p>replace this link to the archive ?
+        <button type="submit" class="btn btn-danger">Yes,Replace</button>
+        <a href="{% url 'my_bookmarks:boo:list'%}">Back to Bookmark List</a>
+
+
+    <form>
+
+</div>
+
+
+{% endblock %}

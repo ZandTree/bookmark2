@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Welcome,{{user.get_full_name}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home'%}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'my_bookmarks:list'%}">Bookmarks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'my_bookmarks:create'%}">Create new bookmark</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'my_bookmarks:trash' %}">
+            <i style="font-size:24px" class="fa">&#xf014;</i> Trash Archive
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'collection:create-collection' %}">Create collection</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'collection:all-collections' %}">List
+            collection</a>
+      </li>
+
+        <form class="form-inline" action="{% url 'my_bookmarks:search' %}"">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name='q'>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'localusers:profile' user.id %}">Profile Settings</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">SignUp</a>
+            </li>
+            {% endif %}
+    </ul>
+    
+  </div>
+</nav>

@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}delete account? {% endblock %}
+
+{% block content %}
+            <form action="" method="post">
+                <p>Are you sure you want delete your account?</p>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Yes,Delete</button>
+                <a href="{% url 'my_bookmarks:list'%}">Back to Homepage</a>
+            </form>
+{% endblock %}

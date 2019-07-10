@@ -1,0 +1,41 @@
+<div class="card">
+  <h5 class="card-header">{{bookmark.title}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Link:<a href="{{bookmark.url}}" target="_blank"> {{bookmark.url}}</a></h5>
+    <hr>
+    <p class="card-text">{{bookmark.description|linebreaks}}</p>
+    <p><strong>Tagged with:</strong>
+        {% for tag in bookmark.tags.all %}
+        <a href="{% url 'my_bookmarks:list' tag=tag.name %}' %}">{{tag}}</a>
+        {% endfor %}
+    </p>
+
+  </div>
+    {% if trash %}
+    <div class="card-footer">
+        <form action="{% url 'my_bookmarks:final_del' pk=bookmark.pk %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Perm Del">
+        <form>
+        <a href="{% url 'my_bookmarks:list'%}">Back to Bookmark List</a>
+        <a href="{% url 'my_bookmarks:restore' bookmark.pk %}"><button type="button" class="btn btn-success">Restore</button></a>
+    </div>
+    {% else %}
+        <div class="card-footer">
+            <div class="float-left">
+                <a href="{% url 'my_bookmarks:edit' bookmark.pk %}" >Edit</a> |
+                <button class="btn btn-success" data-toggle="modal"
+                                                data-bookmark="{{bookmark.pk}}"
+                                                data-target=".collection-modal">Add collection
+                </button>
+                <!-- <button class="btn btn-sm" data-toggle="modal" data-target=".collection-modal" data-bookmark="{{ bookmark.pk }}">Add to collection</button> -->
+
+            </div>
+            <div class="float-right">
+                <a href="{% url 'my_bookmarks:soft-delete' bookmark.pk %}">Soft Delete</a>
+            </div>
+
+
+        </div>
+    {% endif %}
+</div>

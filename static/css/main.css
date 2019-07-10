@@ -1,0 +1,8 @@
+.card {
+    width:100%;
+    height:23vw;
+    object-fit:cover;
+}
+.gray{
+    background: red;
+}

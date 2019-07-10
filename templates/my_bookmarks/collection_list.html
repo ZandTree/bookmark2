@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mt-5">
+    {% for collection in collection_list %}
+        <div class="col col-12">
+            <a href="{% url 'collection:detail' collection.slug %}">{{collection}}</a>
+            <hr>
+        </div>
+    {% endfor %}
+    <a href="{% url 'collection:create-collection' %}" class='btn btn-success'>Create new collection</a>
+
+
+
+</div>
+
+{% endblock %}

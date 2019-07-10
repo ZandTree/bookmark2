@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h5 class="my-3">Soft Deleted</h5>
+<div class="card">
+  <h5 class="card-header">{{bookmark.title}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Link:<a href="{{bookmark.url}}" target="_blank"> {{bookmark.url}}</a></h5>
+    <hr>
+    <p class="card-text">{{bookmark.description|linebreaks}}</p>
+    <p><strong>Tagged with:</strong>
+        {% for tag in bookmark.tags.all %}
+        <a href="{% url 'my_bookmarks:list' tag=tag.name %}" %}">{{tag}}</a>
+        {% endfor %}
+    </p>
+
+  </div>
+  <div class="card-footer">
+      <form action="{% url 'my_bookmarks:soft-delete' pk=bookmark.pk %}" method="post">
+          {% csrf_token %}
+          <p>replace this link to the archive ?
+          <button type="submit" class="btn btn-danger">Soft Delete</button>
+          <a href="{% url 'my_bookmarks:list'%}">Back to Bookmark List</a>
+      <form>
+  </div>
+</div>
+
+
+
+{% endblock %}
